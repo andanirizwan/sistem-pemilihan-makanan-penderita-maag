@@ -32,11 +32,54 @@ class Page extends CI_Controller {
 		$protein = $this->input->post('protein');
 		$lemak = $this->input->post('lemak');
 
-		if ($nama_makanan == 'sop daging' ) {
-			$hitung_karbohidrat = '100';
-			$hitung_protein= '100';
-			$hitung_lemak= '100';
-			$nilai_alternatif= '100';
+		$hitung_karbohidrat = 0;
+		$hitung_protein = $protein/0.6*100;
+		$hitung_lemak = $lemak/0.1*100;
+		$nilai_alternatif= $hitung_karbohidrat*0.51+$hitung_protein*0.33+$hitung_lemak*0.15;
+
+		if ($karbohidrat == '0' ) {
+
+			$data1 = array(
+				'nama_makanan' => $nama_makanan,
+				'karbohidrat' => $karbohidrat,
+				'protein' => $protein,
+				'lemak' => $lemak
+				);
+
+			$data2 = array(
+				'nama_makanan' => $nama_makanan,
+				'karbohidrat' => '100',
+				'protein' => $hitung_protein,
+				'lemak' => $hitung_lemak,
+				'nilai_alternatif' => $nilai_alternatif
+			);
+
+			$this->page_model->savemakanan($data1,'data_makanan');
+			$this->page_model->savetransformasi($data2,'matrik_transformasi');
+			redirect('page/datamakanan');
+
+		}elseif ($protein == '0.6') {
+
+			$data1 = array(
+				'nama_makanan' => $nama_makanan,
+				'karbohidrat' => $karbohidrat,
+				'protein' => $protein,
+				'lemak' => $lemak
+				);
+
+			$data2 = array(
+				'nama_makanan' => $nama_makanan,
+				'karbohidrat' => $hitung_karbohidrat,
+				'protein' => '100',
+				'lemak' => $hitung_lemak,
+				'nilai_alternatif' => $nilai_alternatif
+			);
+
+			$this->page_model->savemakanan($data1,'data_makanan');
+			$this->page_model->savetransformasi($data2,'matrik_transformasi');
+			redirect('page/datamakanan');
+
+		}elseif ($lemak == '0.1') {
 
 			$data1 = array(
 				'nama_makanan' => $nama_makanan,
@@ -49,14 +92,16 @@ class Page extends CI_Controller {
 				'nama_makanan' => $nama_makanan,
 				'karbohidrat' => $hitung_karbohidrat,
 				'protein' => $hitung_protein,
-				'lemak' => $hitung_lemak,
+				'lemak' => '100',
 				'nilai_alternatif' => $nilai_alternatif
 			);
 
 			$this->page_model->savemakanan($data1,'data_makanan');
 			$this->page_model->savetransformasi($data2,'matrik_transformasi');
 			redirect('page/datamakanan');
-		}else{
+		}
+		
+		else{
  
 		$data1 = array(
 			'nama_makanan' => $nama_makanan,
@@ -65,10 +110,6 @@ class Page extends CI_Controller {
 			'lemak' => $lemak
 			);
 		
-		$hitung_karbohidrat = 0/$karbohidrat*100;
-		$hitung_protein = $protein/3.6*100;
-		$hitung_lemak = $lemak/4.6*100;
-		$nilai_alternatif= $hitung_karbohidrat*0.51+$hitung_protein*0.33+$hitung_lemak*0.15;
 
 		$data2 = array(
 			'nama_makanan' => $nama_makanan,
@@ -97,24 +138,56 @@ class Page extends CI_Controller {
 		$protein = $this->input->post('protein');
 		$lemak = $this->input->post('lemak');
 		$id = $this->input->post('id');
- 
-		$data1 = array(
-			'nama_makanan' => $nama_makanan,
-			'karbohidrat' => $karbohidrat,
-			'protein' => $protein,
-			'lemak' => $lemak
+
+
+		$hitung_karbohidrat = 0;
+		$hitung_protein = $protein/0.6*100;
+		$hitung_lemak = $lemak/0.1*100;
+		$nilai_alternatif= $hitung_karbohidrat*0.51+$hitung_protein*0.33+$hitung_lemak*0.15;
+
+		if ($karbohidrat == '0' ) {
+
+			$data1 = array(
+				'nama_makanan' => $nama_makanan,
+				'karbohidrat' => $karbohidrat,
+				'protein' => $protein,
+				'lemak' => $lemak
+				);
+
+			$data2 = array(
+				'nama_makanan' => $nama_makanan,
+				'karbohidrat' => '100',
+				'protein' => $hitung_protein,
+				'lemak' => $hitung_lemak,
+				'nilai_alternatif' => $nilai_alternatif
 			);
-		
-		$hitung_karbohidrat = 0.0/$karbohidrat*100;
-		$hitung_protein = $protein/3.6*100;
-		$hitung_lemak = $lemak/4.6*100;
-		$nilai_alternatif= $hitung_karbohidra*0.51+$hitung_protein*0.33+$hitung_lemak*0.15;
-		
-		if ($nama_makanan == 'sop daging' ) {
-			$hitung_karbohidrat = '100';
-			$hitung_protein= '100';
-			$hitung_lemak= '100';
-			$nilai_alternatif= '100';
+
+			$this->page_model->updatemakanan($data1,$id);
+			$this->page_model->updatetransformasi($data2,$id);
+			redirect('page/datamakanan');
+
+		}elseif ($protein == '0.6') {
+
+			$data1 = array(
+				'nama_makanan' => $nama_makanan,
+				'karbohidrat' => $karbohidrat,
+				'protein' => $protein,
+				'lemak' => $lemak
+				);
+
+			$data2 = array(
+				'nama_makanan' => $nama_makanan,
+				'karbohidrat' => $hitung_karbohidrat,
+				'protein' => '100',
+				'lemak' => $hitung_lemak,
+				'nilai_alternatif' => $nilai_alternatif
+			);
+
+			$this->page_model->updatemakanan($data1,$id);
+			$this->page_model->updatetransformasi($data2,$id);
+			redirect('page/datamakanan');
+
+		}elseif ($lemak == '0.1') {
 
 			$data1 = array(
 				'nama_makanan' => $nama_makanan,
@@ -127,15 +200,24 @@ class Page extends CI_Controller {
 				'nama_makanan' => $nama_makanan,
 				'karbohidrat' => $hitung_karbohidrat,
 				'protein' => $hitung_protein,
-				'lemak' => $hitung_lemak,
+				'lemak' => '100',
 				'nilai_alternatif' => $nilai_alternatif
 			);
-		
+
 			$this->page_model->updatemakanan($data1,$id);
 			$this->page_model->updatetransformasi($data2,$id);
 			redirect('page/datamakanan');
-
 		}
+		
+		else{
+ 
+		$data1 = array(
+			'nama_makanan' => $nama_makanan,
+			'karbohidrat' => $karbohidrat,
+			'protein' => $protein,
+			'lemak' => $lemak
+			);
+		
 
 		$data2 = array(
 			'nama_makanan' => $nama_makanan,
@@ -144,10 +226,11 @@ class Page extends CI_Controller {
 			'lemak' => $hitung_lemak,
 			'nilai_alternatif' => $nilai_alternatif
 		);
-			
+
 		$this->page_model->updatemakanan($data1,$id);
 		$this->page_model->updatetransformasi($data2,$id);
 		redirect('page/datamakanan');
+		}
 	}
 	
 
@@ -185,8 +268,14 @@ class Page extends CI_Controller {
 	}
 	
 	public function hasilrekomendasi(){
-		$data['matrik'] = $this->page_model->getallmatrik()->result();
+		$data['matrik'] = $this->page_model->getallrangking	()->result();
 		$this->load->view('hasilrekomendasi', $data);
+	}
+
+	public function hapusmakanan($id){
+		
+		$this->page_model->hapusmakanan($id);
+		redirect('page/datamakanan');
 	}
 
 	public function login(){

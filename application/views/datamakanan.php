@@ -54,7 +54,7 @@
 					
 					<td>
 					<a href="<?php echo base_url('page/editdatamakanan/'); ?><?php echo $makanan1->id ?>" class="btn btn-info" type="button">edit</a>
-					<button type="button" class="btn btn-danger">hapus</button></td>
+					<a href="<?php echo base_url('page/hapusmakanan/'); ?><?php echo $makanan1->id ?>" class="btn btn-danger" type="button">hapus</a>
 					
 				</tr>
 

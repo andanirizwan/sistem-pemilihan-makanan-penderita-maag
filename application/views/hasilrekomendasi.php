@@ -28,12 +28,13 @@
 				<table class="table table-striped table-bordered">
 				<thead>
 					<tr>
-					<th scope="col">No</th>
+					
 					<th scope="col">Nama makanan</th>
 					<th scope="col">karbohidrat (0.51)</th>
 					<th scope="col">protein (0.33)</th>
 					<th scope="col">lemak (0.15)</th>
-					<th scope="col">nilai alternatif (0.15)</th>
+					<th scope="col">nilai alternatif</th>
+					<th scope="col">Rangking</th>
 
 					</tr>
 				</thead>
@@ -44,12 +45,13 @@
 				foreach($matrik as $matrik1){ 
 				?>
 				<tr>
-					<td><?php echo $no++ ?></td>
+					
 					<td><?php echo $matrik1->nama_makanan ?></td>
 					<td><?php echo $matrik1->karbohidrat ?></td>
 					<td><?php echo $matrik1->protein ?></td>
 					<td><?php echo $matrik1->lemak ?></td>
 					<td><?php echo $matrik1->nilai_alternatif ?></td>
+					<td><?php echo $no++ ?></td>
 					
 				</tr>
 

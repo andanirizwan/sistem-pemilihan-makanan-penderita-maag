@@ -52,5 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'page';
 $route['page/editdatamakanan/(:any)'] = 'page/editdatamakanan/$1';
 $route['page/editkriteria/(:any)'] = 'page/editkriteria/$1';
+$route['page/hapusmakanan/(:any)'] = 'page/hapusmakanan/$1';
+$route['page/hapuskriteria/(:any)'] = 'page/hapuskriteria/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
