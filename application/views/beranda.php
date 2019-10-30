@@ -1,8 +1,8 @@
 <?php
 
-//   if (!$this->session->userdata('username')) {
-//     redirect('page/login');
-//   }
+  if (!$this->session->userdata('username')) {
+    redirect('page/login');
+  }
 
  ?>
 
